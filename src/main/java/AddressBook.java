@@ -23,10 +23,9 @@ public class AddressBook {
     Scanner scanner = new Scanner(System.in);
 
     // Métodos.
-    
     /*
     Este método cargará la información del archivo al HashMap.
-    */
+     */
     public void load(String file) {
         BufferedReader bufferedReader = null;
         try {
@@ -50,10 +49,10 @@ public class AddressBook {
             }
         }
     }
-    
+
     /*
     Esté método guardará un contacto.
-    */
+     */
     public void save(String file, String phone, String name) {
         BufferedWriter bufferedWriter = null;
         FileWriter fw = null;
@@ -75,18 +74,18 @@ public class AddressBook {
         }
 
     }
-    
+
     /*
     Esté método mostrará los contactos de la agenda.
-    */
+     */
     public void list() {
         System.out.println("Contactos:");
         contacts.forEach((k, v) -> System.out.println("Número: " + k + " : Nombre: " + v));
     }
-    
+
     /*
     Este método creará un contacto.
-    */
+     */
     public void create(String file) {
         String name, phone;
         // Solicitando los datos.
@@ -99,10 +98,10 @@ public class AddressBook {
         // Llamamos al método save para guardar el nuevo contacto creado.
         addressBook.save(file, phone, name);
     }
-    
+
     /*
     Esté método eliminará un contacto dependiendo del número teléfonico.
-    */
+     */
     public void delete(String file) {
         String phone;
         int c = 0;
@@ -110,32 +109,50 @@ public class AddressBook {
         System.out.println("Ingrese el número teléfonico para eliminarlo:");
         phone = scanner.next();
         // Eliminando el contacto del HashMap.
-        contacts.remove(phone);
-        System.out.println("Contacto borrado");
+        if (contacts.containsKey(phone)) {
+            contacts.remove(phone);
+            System.out.println("Contacto borrado");
+            BufferedWriter bufferedWriter = null;
 
-        BufferedWriter bufferedWriter = null;
-
-        try {
-            bufferedWriter = new BufferedWriter(new FileWriter(file));
-            // Actualizando la información del archivo.
-            for (Map.Entry<String, String> entry : contacts.entrySet()) {
-                if(c == 0) {
-                    bufferedWriter.write(entry.getKey() + "," + entry.getValue());
-                    c++;
-                } else {
-                    bufferedWriter.write("\n" + entry.getKey() + "," + entry.getValue());
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
             try {
-                if (bufferedWriter != null) {
-                    bufferedWriter.close();
+                bufferedWriter = new BufferedWriter(new FileWriter(file));
+                // Actualizando la información del archivo.
+                for (Map.Entry<String, String> entry : contacts.entrySet()) {
+                    if (c == 0) {
+                        bufferedWriter.write(entry.getKey() + "," + entry.getValue());
+                        c++;
+                    } else {
+                        bufferedWriter.write("\n" + entry.getKey() + "," + entry.getValue());
+                    }
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+            } finally {
+                try {
+                    if (bufferedWriter != null) {
+                        bufferedWriter.close();
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
+        } else {
+            System.out.println("No se ha encontrado algún contacto con ese número teléfonico");
+        }
+
+    }
+    
+    public void searchContact() {
+        String phone;
+        
+        System.out.println("Ingrese número teléfonico para buscar el nombre del contacto:");
+        phone = scanner.next();
+        
+        if(contacts.containsKey(phone)) {
+            System.out.println("Contacto encontrado:");
+            System.out.println("Número: " + phone + " : Nombre: " + contacts.get(phone));
+        } else {
+            System.out.println("Contacto NO encontrado");
         }
     }
 }

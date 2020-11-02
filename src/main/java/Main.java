@@ -18,12 +18,16 @@ public class Main {
         String file = "contacts.txt";
         String option;
         String res = "";
+        
+        // Cargando la información.
+        addressBook.load(file);
 
         do {
             System.out.println("***** Bienvenido a tu Agenda Telefónica *****");
             System.out.println("1. Mostrar los contactos de la agenda.");
             System.out.println("2. Crear un nuevo contacto.");
             System.out.println("3. Borrar un contacto.");
+            System.out.println("4. Buscar un contacto.");
             System.out.println("0. Salir.");
             System.out.println("Elige una opción: ");
             option = scanner.next();
@@ -43,6 +47,11 @@ public class Main {
                 case "3":
                     // Borrar un contacto.
                     addressBook.delete(file);
+                    break;
+                    
+                case "4":
+                    // Buscar un contacto.
+                    addressBook.searchContact();
                     break;
                     
                 case "0":
