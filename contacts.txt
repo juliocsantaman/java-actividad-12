@@ -1,5 +1,4 @@
-123,jane
-9912145878,salome
 102030,melissa
-405060,jack
 9988902399,julio
+123,jane
+987,jack

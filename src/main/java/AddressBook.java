@@ -59,7 +59,7 @@ public class AddressBook {
         try {
             fw = new FileWriter(file, true);
             bufferedWriter = new BufferedWriter(fw);
-            bufferedWriter.write("\n" + phone + "," + name);
+            bufferedWriter.write(phone + "," + name + "\n");
             System.out.println("Contacto guardado");
         } catch (Exception e) {
             System.out.println(e.getMessage());
