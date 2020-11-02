@@ -142,11 +142,14 @@ public class AddressBook {
 
     }
     
+    /*
+    Método que buscará un contacto dependiendo del número teléfonico.
+    */
     public void searchContact() {
         String phone;
         
         System.out.println("Ingrese número teléfonico para buscar el nombre del contacto:");
-        phone = scanner.next();
+        phone = scanner.next(); 
         
         if(contacts.containsKey(phone)) {
             System.out.println("Contacto encontrado:");
