@@ -91,7 +91,7 @@ public class AddressBook {
         // Solicitando los datos.
         System.out.println("Ingresa nombre del contacto:");
         name = scanner.next();
-        System.out.println("Ingresa el número teléfonico del contacto:");
+        System.out.println("Ingresa el número telefónico del contacto:");
         phone = scanner.next();
         // Instanciamos un objeto AddressBook.
         AddressBook addressBook = new AddressBook();
@@ -106,7 +106,7 @@ public class AddressBook {
         String phone;
         int c = 0;
         // Solicitando datos.
-        System.out.println("Ingrese el número teléfonico para eliminarlo:");
+        System.out.println("Ingrese el número telefónico para eliminarlo:");
         phone = scanner.next();
         // Eliminando el contacto del HashMap.
         if (contacts.containsKey(phone)) {
@@ -137,18 +137,18 @@ public class AddressBook {
                 }
             }
         } else {
-            System.out.println("No se ha encontrado algún contacto con ese número teléfonico");
+            System.out.println("No se ha encontrado algún contacto con ese número telefónico");
         }
 
     }
     
     /*
-    Método que buscará un contacto dependiendo del número teléfonico.
+    Método que buscará un contacto dependiendo del número telefónico.
     */
     public void searchContact() {
         String phone;
         
-        System.out.println("Ingrese número teléfonico para buscar el nombre del contacto:");
+        System.out.println("Ingrese número telefónico para buscar el nombre del contacto:");
         phone = scanner.next(); 
         
         if(contacts.containsKey(phone)) {
