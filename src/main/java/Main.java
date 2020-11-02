@@ -19,10 +19,9 @@ public class Main {
         String option;
         String res = "";
         
-        // Cargando la información.
-        addressBook.load(file);
-
         do {
+            // Cargando la información.
+            addressBook.load(file);
             System.out.println("***** Bienvenido a tu Agenda Telefónica *****");
             System.out.println("1. Mostrar los contactos de la agenda.");
             System.out.println("2. Crear un nuevo contacto.");
